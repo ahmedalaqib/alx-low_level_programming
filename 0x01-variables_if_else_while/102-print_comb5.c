@@ -29,8 +29,8 @@ int main(void)
 						putchar(q + '0');
 					if (!(n == 9 && m == 8))
 					{
-							putchar(',');
-							putchar(' ');
+						putchar(',');
+						putchar(' ');
 					}
 					}
 				}
