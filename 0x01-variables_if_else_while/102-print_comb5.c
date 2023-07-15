@@ -27,11 +27,11 @@ int main(void)
 						putchar(' ');
 						putchar(p + '0');
 						putchar(q + '0');
-						if (!(n == 9 && m == 8))
-						{
+					if (!(n == 9 && m == 8))
+					{
 							putchar(',');
 							putchar(' ');
-						}
+					}
 					}
 				}
 			}
