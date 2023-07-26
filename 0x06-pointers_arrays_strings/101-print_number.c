@@ -1,4 +1,4 @@
-#include "main.h"
+#include <stdio.h>
 
 /**
  * print_number - prints an integer.
@@ -12,7 +12,7 @@ void print_number(int n)
 
 	if (n < 0)
 	{
-		_putchar(45);
+		putchar(45);
 		m = n * -1;
 	}
 	else
@@ -31,6 +31,6 @@ void print_number(int n)
 
 	for (; count >= 1; count /= 10)
 	{
-		_putchar(((m / count) % 10) + 48);
+		putchar(((m / count) % 10) + 48);
 	}
 }
