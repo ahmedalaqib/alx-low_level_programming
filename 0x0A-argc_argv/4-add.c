@@ -1,26 +1,27 @@
-#include <stdio.h>
-#include <stdlib.h>
-/**
- * main - entry point for program
- *
- * @argc: count of args present
- * @argv: array of char * pointing to args
- *
- * Return: always 0 (success)
- */
-int main(int argc, char *argv[])
-{
-	int i, sum = 0;
+#include <ctype.h>
 
-	for (i = 1; i < argc; i++)
+/**
+ * main - function to add variables
+ * @argc: number of arguments
+ * @argv: arguments being passed
+ * Return: Always 0 or 1
+ */
+int main(int argc, char **argv)
+{
+	int a, b, addition;
+
+	for (a = 1; a < argc; a++)
 	{
-		if (!atoi(argv[i])) /* non numeric */
+		for (b = 0; argv[a][b] != '\0'; b++)
 		{
-			printf("Error\n");
-			return (1);
+			if (!isdigit(argv[a][b]))
+			{
+				printf("Error\n");
+				return (1);
+			}
 		}
-		sum += atoi(argv[i]);
+		addition = addition + atoi(argv[a]);
 	}
-	printf("%d\n", sum);
+	printf("%i\n", addition);
 	return (0);
 }
