@@ -16,9 +16,9 @@ char *str_concat(char *s1, char *s2)
 	int size2 = 0;
 	char *ptr;
 
-	while (s1[i++])
+	while (s1 && s1[i++])
 		size1++;
-	while (s2[j++])
+	while (s2 && s2[j++])
 		size2++;
 
 	ptr = malloc(sizeof(char) * (size1 + size2) + 1);
