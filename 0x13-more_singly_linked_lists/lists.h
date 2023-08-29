@@ -130,4 +130,12 @@ listint_t *reverse_listint(listint_t **head);
 
 size_t print_listint_safe(const listint_t *h);
 
+/**
+ * free_listint_safe - Prints a linked list
+ * @h: Pointer to address of a list
+ * Return: Size of the list that was free'd
+ **/
+
+size_t free_listint_safe(listint_t **h);
+
 #endif
