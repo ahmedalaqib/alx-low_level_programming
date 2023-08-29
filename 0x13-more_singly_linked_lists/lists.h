@@ -138,4 +138,14 @@ size_t print_listint_safe(const listint_t *h);
 
 size_t free_listint_safe(listint_t **h);
 
+/**
+ * find_listint_loop - Finds the loop in a linked list
+ * @head: Pointer to a struct
+ *
+ * Return: Address of the node where loop starts
+ *	 NULL if there is no loop
+ **/
+
+listint_t *find_listint_loop(listint_t *head)
+
 #endif
