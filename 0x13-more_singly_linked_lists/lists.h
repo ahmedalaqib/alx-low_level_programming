@@ -148,4 +148,11 @@ size_t free_listint_safe(listint_t **h);
 
 listint_t *find_listint_loop(listint_t *head);
 
+/**
+ * find_listint_loop_pl - finds a loop in a linked list
+ * @head: linked list to search
+ * Return: address of node where loop starts/returns, NULL if no loop
+ **/
+listint_t *find_listint_loop_pl(listint_t *head);
+
 #endif

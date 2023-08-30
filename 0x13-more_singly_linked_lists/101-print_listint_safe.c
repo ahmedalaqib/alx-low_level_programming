@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-listint *find_listint_loop_pl(listint_t *head);
-
 /**
  * find_listint_loop_pl - finds a loop in a linked list
  * @head: linked list to search
