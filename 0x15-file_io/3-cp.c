@@ -3,7 +3,7 @@
 
 /**
  * close_file - Close the file
- * @fd: The file descriptor of the file we want to close
+ * @fid: The file descriptor of the file we want to close
  * Return: void
  **/
 void close_file(int fid)
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 		rd = read(src, buffer, 1024);
 		if (src == -1 || rd == -1)
 		{
-			dprintf(STDERR_FILENO,"Error: Can't read from file %s\n", argv[1]);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 			exit(98);
 		}
 
