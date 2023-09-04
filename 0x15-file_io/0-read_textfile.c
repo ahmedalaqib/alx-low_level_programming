@@ -10,7 +10,7 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int txt_file, total, read_status;
-	char buffer[BUFSIZE];
+	char buffer[BUFSIZ];
 
 	if (filename == NULL)
 		return (0);
@@ -19,12 +19,12 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	total = 0;
 	read_status = 1;
-	while (letters > BUFSIZE && read_status != 0)
+	while (letters > BUFSIZ && read_status != 0)
 	{
-		read_status = read(txt_file, buffer, BUFSIZE);
+		read_status = read(txt_file, buffer, BUFSIZ);
 		write(STDOUT_FILENO, buffer, read_status);
 		total += read_status;
-		letters -= BUFSIZE;
+		letters -= BUFSIZ;
 	}
 	read_status = read(txt_file, buffer, letters);
 	write(STDOUT_FILENO, buffer, read_status);
