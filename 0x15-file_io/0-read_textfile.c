@@ -1,40 +1,41 @@
 #include "main.h"
+#include <sys/types.h>
+#include <sys/stat.h>
 
 /**
- * read_textfile - Read a text file and print it to the POSIX standard output
- * @filename: The name of the file to be printed
- * @letters: The number of letters to read and print from the file
- * Return: The actual number of letters it could read and print
- *	 0 - if the file can not be opened, read, or if
- *	 filename is NULL, or if write fails or does not
- *	 write the expected amount of bytes
+ * read_textfile - reads a text file and prints it to the POSIX standard output
+ * @filename: name of the file to read
+ * @letters: number of letters it should read and print
+ * Return: actual number of letters it could read and print
  **/
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	ssize_t op, rd, wr;
+	int fd;
+	ssize_t lenr, lenw;
 	char *buffer;
 
-	if (!filename)
+	if (filename == NULL)
 		return (0);
-
-	buffer = malloc(letters * sizeof(char));
-
-	if (!buffer)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 		return (0);
-
-	op = open(filename, O_RDONLY);
-	rd = read(op, buffer, letters);
-	wr = write(STDOUT_FILENO, buffer, rd);
-
-	if (op == -1 || rd == -1 || wr == -1 || wr != rd)
+	buffer = malloc(sizeof(char) * letters);
+	if (buffer == NULL)
+	{
+		close(fd);
+		return (0);
+	}
+	lenr = read(fd, buffer, letters);
+	close(fd);
+	if (lenr == -1)
 	{
 		free(buffer);
 		return (0);
 	}
-
+	lenw = write(STDOUT_FILENO, buffer, lenr);
 	free(buffer);
-	close(op);
-
-	return (wr);
+	if (lenr != lenw)
+		return (0);
+	return (lenw);
 }
