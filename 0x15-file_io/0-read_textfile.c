@@ -1,40 +1,34 @@
 #include "main.h"
 
 /**
- * read_textfile - Read a text file and print it to the POSIX standard output
- * @filename: The name of the file to be printed
- * @letters: The number of letters to read and print from the file
- * Return: The actual number of letters it could read and print
- *	 0 - if the file can not be opened, read, or if
- *	 filename is NULL, or if write fails or does not
- *	 write the expected amount of bytes
+ * read_textfile - reads a text file and prints it to the POSIX standard out
+ * @filename: name of the file to read
+ * @letters: number of characters to print
+ * Return: 0 on success
  **/
 
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	ssize_t op, rd, wr;
-	char *buffer;
+	int txt_file, total, read_status;
+	char buffer[BUFSIZE];
 
-	if (!filename)
+	if (filename == NULL)
 		return (0);
-
-	buffer = malloc(letters * sizeof(char));
-
-	if (!buffer)
+	txt_file = open(filename, O_RDONLY);
+	if (txt_file == -1)
 		return (0);
-
-	op = open(filename, O_RDONLY);
-	rd = read(op, buffer, letters);
-	wr = write(STDOUT_FILENO, buffer, rd);
-
-	if (op == -1 || rd == -1 || wr == -1 || wr != rd)
+	total = 0;
+	read_status = 1;
+	while (letters > BUFSIZE && read_status != 0)
 	{
-		free(buffer);
-		return (0);
+		read_status = read(txt_file, buffer, BUFSIZE);
+		write(STDOUT_FILENO, buffer, read_status);
+		total += read_status;
+		letters -= BUFSIZE;
 	}
-
-	free(buffer);
-	close(op);
-
-	return (wr);
+	read_status = read(txt_file, buffer, letters);
+	write(STDOUT_FILENO, buffer, read_status);
+	total += read_status;
+	close(txt_file);
+	return (total);
 }
